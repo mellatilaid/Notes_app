@@ -20,7 +20,13 @@ class CustomActionButton extends StatelessWidget {
         backgroundColor: backGroundColor,
       ),
       onPressed: onPressed,
-      child: Text(title),
+      child: Text(
+        title,
+        style: const TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
     );
   }
 }
