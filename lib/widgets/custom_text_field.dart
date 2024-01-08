@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
   final double verPadding;
-  const CustomTextField({super.key, this.verPadding = 16});
+  final String labelText;
+  const CustomTextField(
+      {super.key, this.verPadding = 16, required this.labelText});
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +12,7 @@ class CustomTextField extends StatelessWidget {
       decoration: InputDecoration(
         contentPadding:
             EdgeInsets.symmetric(horizontal: 8, vertical: verPadding),
-        labelText: 'Title',
+        labelText: labelText,
         labelStyle: const TextStyle(color: Color(0xff54EBD7)),
         enabledBorder: const OutlineInputBorder(
           borderSide: BorderSide(
