@@ -5,15 +5,26 @@ class CustomTextField extends StatelessWidget {
   final double verPadding;
   final String labelText;
   final int maxLines;
-  const CustomTextField(
-      {super.key,
-      this.verPadding = 16,
-      required this.labelText,
-      this.maxLines = 1});
+  final Function(String?)? onSaved;
+  const CustomTextField({
+    super.key,
+    this.verPadding = 16,
+    required this.labelText,
+    this.maxLines = 1,
+    this.onSaved,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      onSaved: onSaved,
+      validator: (value) {
+        if (value?.isEmpty ?? true) {
+          return "Field required";
+        } else {
+          return null;
+        }
+      },
       cursorColor: kPrimaryColor,
       maxLines: maxLines,
       decoration: InputDecoration(
@@ -26,9 +37,13 @@ class CustomTextField extends StatelessWidget {
         ),
         focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.grey,
+            color: Colors.green,
           ),
         ),
+        errorBorder: const OutlineInputBorder(
+            borderSide: BorderSide(
+          color: Colors.red,
+        )),
       ),
     );
   }
