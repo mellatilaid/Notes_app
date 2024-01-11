@@ -4,8 +4,8 @@ import 'package:notes_app/constants.dart';
 import 'package:notes_app/cubits/fetch_notes_cubit/fetch_note_states.dart';
 import 'package:notes_app/models/note_model.dart';
 
-class GetNoteCubit extends Cubit<GetNoteState> {
-  GetNoteCubit() : super(GetNoteInitial());
+class FetchNotesCubit extends Cubit<GetNoteState> {
+  FetchNotesCubit() : super(GetNoteInitial());
 
   fetchAllNotes() {
     try {
