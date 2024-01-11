@@ -2,7 +2,7 @@ import 'package:notes_app/models/note_model.dart';
 
 class GetNoteState {}
 
-class NoteInitial extends GetNoteState {}
+class GetNoteInitial extends GetNoteState {}
 
 class GetNoteSuccess extends GetNoteState {
   final List<NoteModel> notes;
