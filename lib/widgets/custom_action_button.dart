@@ -4,12 +4,13 @@ class CustomActionButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String title;
   final Color backGroundColor;
-
+  final bool isLoading;
   const CustomActionButton({
     super.key,
     required this.title,
     required this.onPressed,
     required this.backGroundColor,
+    this.isLoading = false,
   });
 
   @override
@@ -20,13 +21,21 @@ class CustomActionButton extends StatelessWidget {
         backgroundColor: backGroundColor,
       ),
       onPressed: onPressed,
-      child: Text(
-        title,
-        style: const TextStyle(
-          color: Colors.black,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
+      child: isLoading
+          ? const SizedBox(
+              height: 22,
+              width: 22,
+              child: CircularProgressIndicator(
+                color: Colors.black,
+              ),
+            )
+          : Text(
+              title,
+              style: const TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
     );
   }
 }
