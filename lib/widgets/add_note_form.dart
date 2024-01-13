@@ -59,7 +59,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                     var noteModel = NoteModel(
                         title: title!,
                         subTitle: subTitle!,
-                        date: DateTime.now().toString(),
+                        date: formatDate(time: DateTime.now()),
                         color: Colors.amber.value);
                     BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
                   } else {
@@ -74,5 +74,15 @@ class _AddNoteFormState extends State<AddNoteForm> {
         ],
       ),
     );
+  }
+
+  String formatDate({required DateTime time}) {
+    final year = time.year.toString();
+
+    final String month = time.month.toString();
+
+    final String day = time.day.toString();
+
+    return '$day/$month/$year';
   }
 }
