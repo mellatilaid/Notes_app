@@ -4,7 +4,9 @@ import 'package:notes_app/widgets/custom_icon.dart';
 class CustomAppBar extends StatelessWidget {
   final String title;
   final IconData icon;
-  const CustomAppBar({super.key, required this.title, required this.icon});
+  final VoidCallback? onTap;
+  const CustomAppBar(
+      {super.key, required this.title, required this.icon, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class CustomAppBar extends StatelessWidget {
           title,
           style: const TextStyle(fontSize: 24),
         ),
-        CustomIcon(icon: icon),
+        CustomIcon(onTap: onTap, icon: icon),
       ],
     );
   }

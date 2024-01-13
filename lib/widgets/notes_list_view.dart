@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:notes_app/cubits/fetch_notes_cubit/fetch_note_cubit.dart';
-import 'package:notes_app/cubits/fetch_notes_cubit/fetch_note_states.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:notes_app/constants.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/widgets/custom_note_item.dart';
 
@@ -10,27 +9,22 @@ class NotesListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final notesBox = Hive.box<NoteModel>(kNoteBox);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16),
-      child: BlocBuilder<FetchNotesCubit, FetchNotesState>(
-        builder: (context, state) {
-          List<NoteModel> notes =
-              BlocProvider.of<FetchNotesCubit>(context).notes ?? [];
-          if (notes.isEmpty) {
-            return const Center(
-              child: Text('Add Your Notes'),
+      child: ValueListenableBuilder(
+          valueListenable: notesBox.listenable(),
+          builder: (context, Box<dynamic> notes, _) {
+            return ListView.builder(
+              itemCount: notes.length,
+              itemBuilder: (context, index) {
+                final NoteModel note = notes.getAt(index) as NoteModel;
+                return CustomNoteItem(
+                  note: note,
+                );
+              },
             );
-          }
-          return ListView.builder(
-            itemCount: notes.length,
-            itemBuilder: (context, index) {
-              return CustomNoteItem(
-                note: notes[index],
-              );
-            },
-          );
-        },
-      ),
+          }),
     );
   }
 }
