@@ -27,7 +27,7 @@ class CustomBottonSheet extends StatelessWidget {
                 right: 16,
                 left: 16,
                 top: 16,
-                bottom: MediaQuery.of(context).viewInsets.bottom,
+                bottom: MediaQuery.of(context).viewInsets.bottom + 16,
               ),
               child: const SingleChildScrollView(
                 child: AddNoteForm(),
