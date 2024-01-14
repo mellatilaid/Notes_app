@@ -3,14 +3,14 @@ import 'package:notes_app/constants.dart';
 
 class CustomTextField extends StatelessWidget {
   final double verPadding;
-  final String labelText;
+  final String hintText;
   final int maxLines;
   final Function(String?)? onSaved;
   final Function(String?)? onChanged;
   const CustomTextField({
     super.key,
     this.verPadding = 16,
-    required this.labelText,
+    required this.hintText,
     this.maxLines = 1,
     this.onSaved,
     this.onChanged,
@@ -31,7 +31,7 @@ class CustomTextField extends StatelessWidget {
       cursorColor: kPrimaryColor,
       maxLines: maxLines,
       decoration: InputDecoration(
-        labelText: labelText,
+        hintText: hintText,
         labelStyle: const TextStyle(color: kPrimaryColor),
         enabledBorder: const OutlineInputBorder(
           borderSide: BorderSide(

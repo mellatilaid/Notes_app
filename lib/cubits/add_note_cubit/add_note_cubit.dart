@@ -13,6 +13,8 @@ class AddNoteCubit extends Cubit<AddNoteState> {
     _noteColor = color;
   }
 
+  get() => _noteColor;
+
   addNote(NoteModel note) async {
     emit(AddNoteLoading());
     note.color = _noteColor;
