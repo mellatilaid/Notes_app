@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../cubits/add_note_cubit/add_note_cubit.dart';
 import 'note_color.dart';
 
 class NoteColorsListView extends StatefulWidget {
@@ -35,6 +37,8 @@ class _NoteColorsListViewState extends State<NoteColorsListView> {
               setState(() {
                 itemColorIndex = index;
               });
+              BlocProvider.of<AddNoteCubit>(context)
+                  .set(color: colors[index].value);
             },
             child: NoteColor(
               itemColor: colors[index],

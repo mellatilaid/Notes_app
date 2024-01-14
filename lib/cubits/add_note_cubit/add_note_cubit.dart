@@ -7,10 +7,15 @@ import 'package:notes_app/models/note_model.dart';
 
 class AddNoteCubit extends Cubit<AddNoteState> {
   AddNoteCubit() : super(AddNoteInitial());
-  int? noteColor;
+  int _noteColor = const Color(0xff6BC9BA).value;
+
+  set({required int color}) {
+    _noteColor = color;
+  }
+
   addNote(NoteModel note) async {
     emit(AddNoteLoading());
-    note.color = noteColor ?? note.color;
+    note.color = _noteColor;
 
     try {
       var notesBox = Hive.box<NoteModel>(kNoteBox);
@@ -19,9 +24,5 @@ class AddNoteCubit extends Cubit<AddNoteState> {
     } catch (e) {
       emit(AddNoteFailuire(errMessage: e.toString()));
     }
-  }
-
-  setNoteColor({required Color color}) {
-    noteColor = color.value;
   }
 }
